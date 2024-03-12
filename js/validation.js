@@ -140,6 +140,9 @@ function newRestaurantValidation(handler) {
   const addresses = document.getElementById("geocoderAddresses");
   const mapContainer = document.getElementById("geocoderMap");
   let map = null;
+  let marker = null;
+  let latitude = null;
+  let longitude = null;
 
   form.setAttribute("novalidate", true);
   form.addEventListener("submit", function (event) {
@@ -163,7 +166,7 @@ function newRestaurantValidation(handler) {
         });
         addresses.replaceChildren();
         addresses.append(list);
-        const links = document.getElementsByTagName("a");
+        const links = form.getElementsByTagName("a");
         for (const link of links) {
           link.addEventListener("click", (event) => {
             for (const link of links) {
@@ -184,6 +187,7 @@ function newRestaurantValidation(handler) {
               );
             } else {
               mapContainer.style.height = "300px";
+              mapContainer.style.zIndex = 1;
               mapContainer.classList.add(
                 "mx-auto",
                 "border--green1",
@@ -202,10 +206,14 @@ function newRestaurantValidation(handler) {
                 maxZoom: 18,
               }).addTo(map);
             }
-            L.marker([
-              event.currentTarget.dataset.lat,
-              event.currentTarget.dataset.lon,
-            ]).addTo(map);
+            map.on("click", function (event) {
+              if (marker) map.removeLayer(marker);
+              marker = L.marker([event.latlng.lat, event.latlng.lng]);
+              marker.addTo(map);
+              latitude = event.latlng.lat;
+              longitude = event.latlng.lng;
+            });
+
             event.preventDefault();
           });
         }
@@ -222,36 +230,16 @@ function newRestaurantValidation(handler) {
       });
     event.preventDefault();
 
-    // Expresiones regulares para, si recibe latitud o longitud, comprobar que sean correctas
-    let regExLat = /^(-?[0-8]?\d(?:\.\d{1,6})?|-?90(?:\.0{1,6})?)$/;
-    let regExLon =
-      /^(-?(?:1[0-7]\d|\d{1,2})(?:\.\d{1,6})?|-?180(?:\.0{1,6})?)$/;
-
     let isValid = true;
     let firstInvalidElement = null;
 
-    if (this.ncLatitude.value) {
-      if (!regExLat.test(this.ncLatitude.value)) {
-        isValid = false;
-        showFeedBack(this.ncLatitude, false);
-        firstInvalidElement = this.ncLatitude;
-      } else {
-        showFeedBack(this.ncLatitude, true);
-      }
-    }
-
-    if (this.ncLongitude.value) {
-      if (!regExLon.test(this.ncLongitude.value)) {
-        isValid = false;
-        showFeedBack(this.ncLongitude, false);
-        firstInvalidElement = this.ncLongitude;
-      } else {
-        showFeedBack(this.ncLongitude, true);
-      }
-    }
-
     this.ncDescription.value = this.ncDescription.value.trim();
     showFeedBack(this.ncDescription, true);
+
+    if (!longitude && !latitude) {
+      isValid = false;
+      showFeedBack(this.ncName, false);
+    }
 
     if (!this.ncName.checkValidity()) {
       isValid = false;
@@ -264,12 +252,7 @@ function newRestaurantValidation(handler) {
     if (!isValid) {
       firstInvalidElement.focus();
     } else {
-      handler(
-        this.ncName.value,
-        this.ncDescription.value,
-        this.ncLatitude.value,
-        this.ncLongitude.value
-      );
+      handler(this.ncName.value, this.ncDescription.value, latitude, longitude);
     }
     event.preventDefault();
     event.stopPropagation();

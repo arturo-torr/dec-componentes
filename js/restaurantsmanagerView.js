@@ -254,6 +254,7 @@ class RestaurantsManagerView {
       "rounded"
     );
     mapContainerMenu.style.width = "50%";
+    mapContainerMenu.style.zIndex = 1;
     let map = L.map("mapid").setView([40.437842, -3.686273], 6);
     L.tileLayer("http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
       attribution:
@@ -273,7 +274,7 @@ class RestaurantsManagerView {
     // Le da una cabecera justo al principio
     container.insertAdjacentHTML(
       "afterbegin",
-      `<h1 class="text--green my-3">Ficha de restaurante</h1>`
+      `<h1 class="text--green my-3">Nuestras ubicaciones</h1>`
     );
   }
 
@@ -1031,28 +1032,7 @@ class RestaurantsManagerView {
           <div class="valid-feedback">Correcto.</div>
       </div>
   </div>
-  
-  <div class="row">
-      <div class="col-md-6 mb-4">
-          <label class="form-label" for="ncLatitude">Latitud:</label>
-          <div class="input-group">
-              <span class="input-group-text"><i class="fa-solid fa-location-crosshairs"></i></span>
-              <input type="text" class="form-control" placeholder="Ej: 25.283" id="ncLatitude" name="ncLatitude">
-              <div class="invalid-feedback">La latitud debe ir entre -90 y 90.</div>
-              <div class="valid-feedback">Correcto.</div>
-          </div>
-      </div>
-  
-      <div class="col-md-6 mb-4">
-          <label class="form-label" for="ncLatitude">Longitud:</label>
-          <div class="input-group">
-              <span class="input-group-text"><i class="fa-solid fa-location-crosshairs"></i></span>
-              <input type="text" class="form-control" placeholder="Ej: -55.283"  id="ncLongitude" name="ncLongitude">
-              <div class="invalid-feedback">La longitud debe ir entre -180 y 180.</div>
-              <div class="valid-feedback">Correcto.</div>
-          </div>
-      </div>
-  </div>
+
   <div class="row">
           <div class="col-md-9">
               <label for="address" class="form-label">Introduzca una dirección del restaurante:</label>
