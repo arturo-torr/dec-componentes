@@ -264,7 +264,7 @@ class RestaurantsManagerView {
                     </div>
                     <div class="mb-5">
                       <h5 class="text-uppercase text--green fw-bold">Ubicación ${res.name}</h5>
-                      <p class="text--green">${res.location}</p>
+                      <div class="container"><div class="m-4" id="mapid"></div></div>
                     </div>
                     <div class="mb-1">
                       <h6 class="text-uppercase text--green fw-bold">Descripción</h6>
@@ -290,7 +290,31 @@ class RestaurantsManagerView {
         "afterbegin",
         `<h1 class="text--green my-3">Ficha de restaurante</h1>`
       );
+
       this.centralzone.append(container);
+      const mapContainer = document.getElementById("mapid");
+      mapContainer.style.height = "300px";
+      mapContainer.classList.add(
+        "w-50",
+        "mx-auto",
+        "border--green1",
+        "rounded"
+      );
+      mapContainer.style.width = "50%";
+      let map = L.map("mapid").setView(
+        [res.location.latitude, res.location.longitude],
+        15
+      );
+      L.tileLayer("http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        attribution:
+          'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BYSA</a>, Imagery © <a href="http://cloudmade.com">CloudMade</a>',
+        maxZoom: 18,
+      }).addTo(map);
+
+      let marker = L.marker([
+        res.location.latitude,
+        res.location.longitude,
+      ]).addTo(map);
     }
   }
 
