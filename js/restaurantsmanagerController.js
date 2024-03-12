@@ -304,6 +304,14 @@ class RestaurantsManagerController {
   onAddRestaurant = () => {
     this[VIEW].showRestaurantsInMenu(this[MODEL].restaurants);
     this[VIEW].bindRestaurantListInMenu(this.handleRestaurantsMenuList);
+    // Muestra en el menú el enlace para mostrar el mapa con sus restaurantes y sus popups
+    this[VIEW].showLocationInMenu();
+    this[VIEW].bindLocation(this.handleLocationInMenu);
+  };
+
+  // Manejador que invoca al método para la vista del mapa
+  handleLocationInMenu = () => {
+    this[VIEW].showLocations(this[MODEL].restaurants);
   };
 
   // Mostrado de enlace para cerrar ventanas y manejador

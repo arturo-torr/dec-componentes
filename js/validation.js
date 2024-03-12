@@ -137,39 +137,109 @@ function newCategoryValidation(handler) {
 // Función para la validación de un nuevo restaurante
 function newRestaurantValidation(handler) {
   const form = document.forms.fNewRestaurant;
+  const addresses = document.getElementById("geocoderAddresses");
+  const mapContainer = document.getElementById("geocoderMap");
+  let map = null;
+  let marker = null;
+  let latitude = null;
+  let longitude = null;
 
   form.setAttribute("novalidate", true);
   form.addEventListener("submit", function (event) {
-    // Expresiones regulares para, si recibe latitud o longitud, comprobar que sean correctas
-    let regExLat = /^(-?[0-8]?\d(?:\.\d{1,6})?|-?90(?:\.0{1,6})?)$/;
-    let regExLon =
-      /^(-?(?:1[0-7]\d|\d{1,2})(?:\.\d{1,6})?|-?180(?:\.0{1,6})?)$/;
+    const url = new URL("https://nominatim.openstreetmap.org/search");
+    url.searchParams.append("format", "json");
+    url.searchParams.append("limit", 3);
+    url.searchParams.append("q", this.q.value);
+    fetch(url, {
+      method: "get",
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        const list = document.createElement("div");
+        list.classList.add("list-group");
+        data.forEach((address) => {
+          list.insertAdjacentHTML(
+            "beforeend",
+            `<a href="#" data-lat="${address.lat}" data-lon="${address.lon}" class="list-group-item list-group-item-action">
+      ${address.display_name}</a>`
+          );
+        });
+        addresses.replaceChildren();
+        addresses.append(list);
+        const links = form.getElementsByTagName("a");
+        for (const link of links) {
+          link.addEventListener("click", (event) => {
+            for (const link of links) {
+              link.classList.remove("bg__grey", "text--green", "border--green");
+            }
+            event.currentTarget.classList.add(
+              "bg__grey",
+              "text--green",
+              "border--green"
+            );
+            if (map) {
+              map.setView(
+                new L.LatLng(
+                  event.currentTarget.dataset.lat,
+                  event.currentTarget.dataset.lon
+                ),
+                15
+              );
+            } else {
+              mapContainer.style.height = "300px";
+              mapContainer.style.zIndex = 1;
+              mapContainer.classList.add(
+                "mx-auto",
+                "border--green1",
+                "rounded"
+              );
+              map = L.map("geocoderMap").setView(
+                [
+                  event.currentTarget.dataset.lat,
+                  event.currentTarget.dataset.lon,
+                ],
+                15
+              );
+              L.tileLayer("http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+                attribution:
+                  'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://cloudmade.com">CloudMade</a>',
+                maxZoom: 18,
+              }).addTo(map);
+            }
+            map.on("click", function (event) {
+              if (marker) map.removeLayer(marker);
+              marker = L.marker([event.latlng.lat, event.latlng.lng]);
+              marker.addTo(map);
+              latitude = event.latlng.lat;
+              longitude = event.latlng.lng;
+            });
+
+            event.preventDefault();
+          });
+        }
+      })
+      .catch((error) => {
+        addresses.replaceChildren();
+        addresses.insertAdjacentHTML(
+          "afterbefin",
+          `<div class="textdanger">
+        <i class="bi bi-exclamation-circle-fill"></i>
+        No se ha podido establecer la conexión con el servidor de mapas.
+        </div>`
+        );
+      });
+    event.preventDefault();
 
     let isValid = true;
     let firstInvalidElement = null;
 
-    if (this.ncLatitude.value) {
-      if (!regExLat.test(this.ncLatitude.value)) {
-        isValid = false;
-        showFeedBack(this.ncLatitude, false);
-        firstInvalidElement = this.ncLatitude;
-      } else {
-        showFeedBack(this.ncLatitude, true);
-      }
-    }
-
-    if (this.ncLongitude.value) {
-      if (!regExLon.test(this.ncLongitude.value)) {
-        isValid = false;
-        showFeedBack(this.ncLongitude, false);
-        firstInvalidElement = this.ncLongitude;
-      } else {
-        showFeedBack(this.ncLongitude, true);
-      }
-    }
-
     this.ncDescription.value = this.ncDescription.value.trim();
     showFeedBack(this.ncDescription, true);
+
+    if (!longitude && !latitude) {
+      isValid = false;
+      showFeedBack(this.ncName, false);
+    }
 
     if (!this.ncName.checkValidity()) {
       isValid = false;
@@ -182,12 +252,7 @@ function newRestaurantValidation(handler) {
     if (!isValid) {
       firstInvalidElement.focus();
     } else {
-      handler(
-        this.ncName.value,
-        this.ncDescription.value,
-        this.ncLatitude.value,
-        this.ncLongitude.value
-      );
+      handler(this.ncName.value, this.ncDescription.value, latitude, longitude);
     }
     event.preventDefault();
     event.stopPropagation();

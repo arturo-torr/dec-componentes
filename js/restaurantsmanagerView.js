@@ -220,6 +220,72 @@ class RestaurantsManagerView {
     }
   }
 
+  // Muestra el enlace con el texto que lleva a ver las ubicaciones
+  showLocationInMenu() {
+    const navRests = document.getElementById("navRests");
+    const container = navRests.nextElementSibling;
+    container.insertAdjacentHTML(
+      "beforeend",
+      `<hr class="dropdown-divider border--green1"><a id="locations" class="dropdown-item text--green fw-bold" href="#locations">Ver ubicaciones</a>`
+    );
+  }
+
+  // Muestra la página con el mapa, sus restaurantes y sus popups
+  showLocations(restaurants) {
+    this.centralzone.replaceChildren();
+    this.initzone.replaceChildren();
+    // Crea el contenedor y le añade las clases
+    const container = document.createElement("div");
+    container.classList.add("container", "my-5");
+    container.id = "restaurant";
+    container.insertAdjacentHTML(
+      "beforeend",
+      `    <div class="mb-5">
+    <div class="container"><div class="m-4" id="mapid"></div></div>
+  </div>`
+    );
+    this.centralzone.append(container);
+    const mapContainerMenu = document.getElementById("mapid");
+    mapContainerMenu.style.height = "400px";
+    mapContainerMenu.classList.add(
+      "w-50",
+      "mx-auto",
+      "border--green1",
+      "rounded"
+    );
+    mapContainerMenu.style.width = "50%";
+    mapContainerMenu.style.zIndex = 1;
+    let map = L.map("mapid").setView([40.437842, -3.686273], 6);
+    L.tileLayer("http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      attribution:
+        'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BYSA</a>, Imagery © <a href="http://cloudmade.com">CloudMade</a>',
+      maxZoom: 18,
+    }).addTo(map);
+
+    for (let res of restaurants) {
+      let marker = L.marker([
+        res.restaurant.location.latitude,
+        res.restaurant.location.longitude,
+      ]).addTo(map);
+      marker.bindPopup(
+        `<b>${res.restaurant.name}</b><br>${res.restaurant.description}`
+      );
+    }
+    // Le da una cabecera justo al principio
+    container.insertAdjacentHTML(
+      "afterbegin",
+      `<h1 class="text--green my-3">Nuestras ubicaciones</h1>`
+    );
+  }
+
+  // Enlazador que se da cuando se realiza clcik sobre el enlace recogido de locations
+  bindLocation(handler) {
+    let locationsLink = document.getElementById("locations");
+    locationsLink.addEventListener("click", () => {
+      handler();
+    });
+  }
+
   // Función que permite mostrar una tarjeta personalizada con la información de cada restaurante
   showRestaurant(res, page) {
     // Creación de las migas de pan, seleccionando el <ol> que las contiene y posteriormente sus <li>
@@ -259,12 +325,12 @@ class RestaurantsManagerView {
               <div class="row align-items-center">
                 <div class="col-xl-12 text-center">
                   <div class="p-4">
-                    <div class="mb-5">
+                    <div class="mb-4">
                       <h2 class="text-uppercase text--green fw-bold fst-italic">${res.name}</h2>
                     </div>
                     <div class="mb-5">
                       <h5 class="text-uppercase text--green fw-bold">Ubicación ${res.name}</h5>
-                      <p class="text--green">${res.location}</p>
+                      <div class="container"><div class="m-4" id="mapid"></div></div>
                     </div>
                     <div class="mb-1">
                       <h6 class="text-uppercase text--green fw-bold">Descripción</h6>
@@ -290,7 +356,31 @@ class RestaurantsManagerView {
         "afterbegin",
         `<h1 class="text--green my-3">Ficha de restaurante</h1>`
       );
+
       this.centralzone.append(container);
+      const mapContainer = document.getElementById("mapid");
+      mapContainer.style.height = "300px";
+      mapContainer.classList.add(
+        "w-50",
+        "mx-auto",
+        "border--green1",
+        "rounded"
+      );
+      mapContainer.style.width = "50%";
+      let map = L.map("mapid").setView(
+        [res.location.latitude, res.location.longitude],
+        15
+      );
+      L.tileLayer("http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        attribution:
+          'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BYSA</a>, Imagery © <a href="http://cloudmade.com">CloudMade</a>',
+        maxZoom: 18,
+      }).addTo(map);
+
+      let marker = L.marker([
+        res.location.latitude,
+        res.location.longitude,
+      ]).addTo(map);
     }
   }
 
@@ -914,6 +1004,7 @@ class RestaurantsManagerView {
     let form = document.createElement("form");
     form.name = "fNewRestaurant";
     form.role = "form";
+    form.method = "get";
     form.classList.add("my-5", "p-3");
     form.insertAdjacentHTML(
       "afterbegin",
@@ -941,28 +1032,20 @@ class RestaurantsManagerView {
           <div class="valid-feedback">Correcto.</div>
       </div>
   </div>
-  
+
   <div class="row">
-      <div class="col-md-6 mb-4">
-          <label class="form-label" for="ncLatitude">Latitud:</label>
-          <div class="input-group">
-              <span class="input-group-text"><i class="fa-solid fa-location-crosshairs"></i></span>
-              <input type="text" class="form-control" placeholder="Ej: 25.283" id="ncLatitude" name="ncLatitude">
-              <div class="invalid-feedback">La latitud debe ir entre -90 y 90.</div>
-              <div class="valid-feedback">Correcto.</div>
+          <div class="col-md-9">
+              <label for="address" class="form-label">Introduzca una dirección del restaurante:</label>
+              <input type="text" name="q" class="form-control" id="address"
+                  placeholder="Introduce la dirección a buscar">
           </div>
-      </div>
-  
-      <div class="col-md-6 mb-4">
-          <label class="form-label" for="ncLatitude">Longitud:</label>
-          <div class="input-group">
-              <span class="input-group-text"><i class="fa-solid fa-location-crosshairs"></i></span>
-              <input type="text" class="form-control" placeholder="Ej: -55.283"  id="ncLongitude" name="ncLongitude">
-              <div class="invalid-feedback">La longitud debe ir entre -180 y 180.</div>
-              <div class="valid-feedback">Correcto.</div>
+          <div class="col-md-2">
+          <label for="btn" class="form-label"><br></label>
+              <button id="bAddress" class="btn btn--green fw-bold  align-self-end" type="submit">Buscar</button>
           </div>
-      </div>
-  </div>
+          <div id="geocoderAddresses"></div>
+          <div id="geocoderMap" class="my-2"></div>
+          </div>
   
   <button class="newfood__content__button" type="submit">Enviar</button>
   <button class="newfood__content__button" type="reset">Cancelar</button>`
