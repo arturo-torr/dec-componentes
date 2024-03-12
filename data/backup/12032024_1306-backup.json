@@ -1,0 +1,110 @@
+{
+  "Natillas de la abuela": {
+    "name": "Natillas de la abuela",
+    "description": "Tradicional, casero y auténtico",
+    "ingredientes": [
+      "Leche",
+      "Canela",
+      "Vaina de vainilla",
+      "Yema de huevo",
+      "Azúcar",
+      "Galleta"
+    ],
+    "image": "img/natillas.jpg"
+  },
+  "Arroz con leche": {
+    "name": "Arroz con leche",
+    "description": "Postre al estilo Karlos Arguiñano",
+    "ingredientes": [
+      "Leche",
+      "Azúcar",
+      "Corteza de naranja",
+      "Vainilla",
+      "Arroz",
+      "Canela"
+    ],
+    "image": "img/arrozleche.jpg"
+  },
+  "Contesa": {
+    "name": "Contesa",
+    "description": "Postre tradicional español",
+    "ingredientes": ["Nata", "Chocolate", "Azúcar"],
+    "image": "img/contesa.jpg"
+  },
+  "Helado casero": {
+    "name": "Helado casero",
+    "description": "Artesano y delicioso",
+    "ingredientes": ["Vainilla", "Azúcar", "Sirope de chocolate"],
+    "image": "img/helado.jpg"
+  },
+  "Carne y Huevo": {
+    "name": "Carne y Huevo",
+    "description": "Burger con huevo frito, especialidad de la casa",
+    "ingredientes": [
+      "Ternera",
+      "Lechuga",
+      "Tomate",
+      "Huevo Frito",
+      "Cheddar",
+      "Ghouda"
+    ],
+    "image": "img/b3.jpg"
+  },
+  "Carne y Bacon": {
+    "name": "Carne y Bacon",
+    "description": "Burger tradicional americana con ternera de vacuno y doble de bacon",
+    "ingredientes": ["Ternera", "Bacon", "Cheddar", "Ghouda", "Pan bizcocho"],
+    "image": "img/b2.jpg"
+  },
+  "Doble Carne Pepinillo": {
+    "name": "Doble Carne Pepinillo",
+    "description": "Hamburguesa doble carne con pepinillo pinchado en el pan de la hamburguesa",
+    "ingredientes": [
+      "Queso",
+      "Ternera",
+      "Lechuga",
+      "Pepinillo",
+      "Ketchup",
+      "Mayonesa",
+      "Mostaza"
+    ],
+    "image": "img/b1.jpeg"
+  },
+  "Desmenuzada con cebolla": {
+    "name": "Desmenuzada con cebolla",
+    "description": "Burger con cerdo desmenuzado, nuestra hamburguesa más artesana",
+    "ingredientes": [
+      "Cerdo",
+      "Cebolla",
+      "Mayonesa",
+      "Lechuga",
+      "Cebolla caramelizada",
+      "Mostaza"
+    ],
+    "image": "img/b4.jpg"
+  },
+  "Fingers de pollo": {
+    "name": "Fingers de pollo",
+    "description": "Fingers de pollo americanos recién sacados de la freidora",
+    "ingredientes": ["Tiras de pollo", "Aceite", "Sazonador"],
+    "image": "img/a2.jpg"
+  },
+  "Tiras de pollo": {
+    "name": "Tiras de pollo",
+    "description": "Tiras de pollo tradicionales al estilo Kentucky",
+    "ingredientes": ["Pollo frito", "Pimienta negra", "Sal"],
+    "image": "img/a1.jpg"
+  },
+  "Croquetas": {
+    "name": "Croquetas",
+    "description": "Croquetas de cocido caseras",
+    "ingredientes": ["Jamón", "Pollo", "Sal", "Sazonador"],
+    "image": "img/a4.jpg"
+  },
+  "Bravas españolas": {
+    "name": "Bravas españolas",
+    "description": "El acompañamiento más tradicional español",
+    "ingredientes": ["Patata", "Tabasco", "Tomate", "Sal"],
+    "image": "img/a3.jpg"
+  }
+}

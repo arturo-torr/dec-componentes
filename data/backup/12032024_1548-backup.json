@@ -1,0 +1,17 @@
+{
+  "KAB Madrid": {
+    "name": "KAB Madrid",
+    "description": "KAB situado en Madrid, donde todo aquel que va con prisa, se para aquí.",
+    "location": { "latitude": 40.437842, "longitude": -3.686273 }
+  },
+  "KAB Ciudad Real": {
+    "name": "KAB Ciudad Real",
+    "description": "KAB situado en Ciudad Real. Un soplo de aire fresco en una ciudad agricultora.",
+    "location": { "latitude": 38.98626, "longitude": -3.92907 }
+  },
+  "KAB Parla": {
+    "name": "KAB Parla",
+    "description": "KAB situado en Parla. Nunca hay que olvidar los orígenes ni de donde venimos.",
+    "location": { "latitude": 40.23604, "longitude": -3.76752 }
+  }
+}

@@ -1,0 +1,445 @@
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    background-color: black;
+}
+
+/** ------------- NAVEGACIÓN ------------- **/
+header {
+    position: sticky;
+    top: 0px;
+    z-index: 10;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    background-color: #121318;
+    font-weight: 600;
+    padding: 10px;
+    text-align: center;
+}
+
+.navbar__logo {
+    display: block;
+    margin: 0 auto;
+    width: 100%;
+    height: 100%;
+    max-height: 75px;
+    max-width: 100px;
+}
+
+.navbar__menu>a {
+    text-decoration: none;
+    color: #8CDD00;
+    cursor: pointer;
+}
+
+.navbar__menu--active {
+    border-bottom: 1px solid #8CDD00;
+}
+
+.navbar__menu>a:hover {
+    border-bottom: 1px solid #8CDD00;
+}
+
+.navbar__menu:hover {
+    color: #8CDD00;
+}
+
+.dropdown-menu {
+    background-color: #121318;
+    color: #8CDD00;
+}
+
+.dropdown-item {
+    background-color: #121318;
+    color: #8CDD00;
+}
+
+.dropdown-menu>a {
+    background-color: #121318;
+    color: #8CDD00;
+    font-weight: bold;
+}
+
+.dropdown-menu>a:hover {
+    background-color: #6db500;
+}
+
+.hover-menu>a:hover {
+    background-color: #6db500;
+}
+
+/** ------------- PRIMERA SECCIÓN - BURGER + BOTÓN ------------- **/
+.banner {
+    display: grid;
+    grid-template-columns: 1fr;
+    background-image: url('../img/burger2.jpg');
+    background-size: cover;
+    background-position: 25% 58%;
+    width: 100%;
+    height: 37.5em;
+}
+
+.banner__content {
+    color: #8CDD00;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: bold;
+    font-size: 3em;
+    text-transform: uppercase;
+    text-align: center;
+    margin-top: 0.5em;
+}
+
+.banner__button {
+    position: relative;
+    display: block;
+    margin: 0 auto;
+    top: -10em;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: bold;
+    font-size: 13pt;
+    border-radius: 5px;
+    background-color: #8CDD00;
+    width: 12em;
+    height: 3em;
+    cursor: pointer;
+    border: 0;
+}
+
+.banner__button:hover {
+    background-color: #6db500;
+}
+
+/** ------------- SEGUNDA SECCIÓN - BURGER + CONTENIDO ------------- **/
+.content {
+    background-color: black;
+    display: grid;
+    grid-template-columns: repeat(2, 50%);
+    align-items: center;
+}
+
+.content div img {
+    width: 100%;
+    height: auto;
+    max-height: 90vh;
+}
+
+.content__text {
+    color: #8CDD00;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.content__text--title {
+    font-size: 4vw;
+    margin: 15px;
+}
+
+.content__text--paragraph {
+    font-size: 4vw;
+    font-weight: bold;
+    margin: 15px;
+}
+
+.content__button {
+    margin: 0 auto;
+    margin-top: 15px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: bold;
+    font-size: 13pt;
+    border-radius: 5px;
+    background-color: #8CDD00;
+    padding: 4%;
+    cursor: pointer;
+    border: 0;
+}
+
+.content__button:hover {
+    background-color: #6db500;
+}
+
+
+/** ------------- TERCERA SECCIÓN - NUEVAS PROMOCIONES ------------- **/
+.newfood {
+    display: grid;
+    grid-template-columns: repeat(2, 50%);
+    background-color: black;
+    justify-items: center;
+}
+
+.newfood__box {
+    width: 100%;
+    max-width: 400px;
+}
+
+.newfood div img {
+    width: 100%;
+    object-fit: cover;
+    height: auto;
+    box-shadow: 0px 0px 5px #8CDD00;
+}
+
+.newfood__content {
+    color: #8CDD00;
+    text-align: center;
+    margin: 15px;
+}
+
+.newfood__content--title {
+    font-size: 2.5em;
+    margin-bottom: 0.25em;
+}
+
+.newfood__content--paragraph {
+    font-size: 1em;
+    margin-bottom: 0.5em;
+}
+
+.newfood__content__button {
+    margin: 0 auto;
+    margin-top: 10px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: bold;
+    font-size: 13pt;
+    border-radius: 5px;
+    background-color: #8CDD00;
+    padding: 0.5em 1em;
+    cursor: pointer;
+    border: 0;
+}
+
+.newfood__content__button:hover {
+    background-color: #6db500;
+}
+
+/** ------------- FOOTER ------------- **/
+footer {
+    display: flex;
+    flex-wrap: wrap;
+    text-align: center;
+    justify-content: space-around;
+    align-items: center;
+    text-decoration: none;
+    color: #8CDD00;
+    background-color: #121318;
+    font-weight: 600;
+    padding: 20px 20px;
+}
+
+footer div img {
+    width: 100%;
+    max-width: 40px;
+    margin: 0 auto;
+}
+
+footer div a {
+    text-decoration: none;
+}
+
+footer div img:hover {
+    cursor: pointer;
+    background-color: #8CDD00;
+    border-radius: 5px;
+}
+
+.img-fluid {
+    width: 100%;
+    max-height: 400px;
+    box-shadow: 0px 0px 5px #8CDD00;
+}
+
+.img-fluid:hover {
+    transform: scale(1.025);
+    transition: 0.3s;
+}
+
+/**  ------------- FORMULARIO ------------- **/
+.form__section {
+    background-color: black;
+    padding: 10px;
+}
+
+#h__form {
+    z-index: unset;
+}
+
+.form__section__title {
+    color: #8CDD00;
+    margin-bottom: 3vh;
+    font-size: 36px;
+    text-align: center;
+    z-index: 0;
+}
+
+form {
+    width: 100%;
+    max-width: 450px;
+    margin: 0 auto;
+    color: white;
+    background-color: #121318;
+    border-radius: 5px;
+    padding: 1vw;
+    box-shadow: 0px 0px 5px #8CDD00;
+}
+
+#login, #contact {
+    display: grid;
+    grid-template-columns: repeat(2, 50%);
+    justify-items: center;
+    margin-bottom: 2vh;
+}
+
+
+.date__sel, .time__sel {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 30px 50px;
+    width: 100%;
+    max-width: 194px;
+    text-align: center;
+}
+
+.date__sel__input, .time__sel__options {
+    text-align: center;
+}
+
+#textzone {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 30px 1fr;
+    justify-items: center;
+    padding: 1% 2%;
+    margin-bottom: 2vh;
+}
+
+textarea {
+    resize: vertical;
+    border: 1px solid #6db500;
+    border-radius: 5px;
+    padding: 10px;
+    width: 100%;
+}
+
+.submit:hover {
+    background-color: #8CDD00;
+    color: black;
+}
+
+.submit:active {
+    background-color: black;
+    color: #6db500;
+}
+
+#preferences {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    justify-items: center;
+    margin-bottom: 3vh;
+}
+
+.center {
+    text-align: center;
+    margin-bottom: 2vh;
+}
+
+/**  ------------- PÁGINA NOSOTROS ------------- **/
+#escene {
+    display: block;
+    margin: 0 auto;
+    cursor: pointer;
+    width: 100%;
+    max-width: 600px;
+    height: 500px;
+    object-fit: cover;
+    box-shadow: 0px 0px 5px #8CDD00;
+}
+
+.ussection {
+    padding: 2vh;
+    display: grid;
+    grid-template-columns: repeat(2, 50%);
+    justify-items: center;
+    align-items: center;
+    background-color: black;
+}
+
+.ussection__information {
+    color: #8CDD00;
+}
+
+.ussection__information details summary {
+    margin: 3vh 0vh;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.ussection__information details summary:hover {
+    color: #6db500;
+}
+
+.ussection__information--subsection {
+    margin-left: 3vw;
+}
+
+/**  --- PRÁCTICA JS 5.2 --- **/
+
+.text--green {
+    text-decoration: none;
+    color: #8CDD00;
+}
+
+.bg__black {
+    background-color: black;
+}
+
+.bg__grey {
+    background-color: #121318;
+}
+
+.border--green {
+    border: 2px solid #8CDD00;
+}
+
+.border--green:hover {
+    border: 2px solid #6db500;
+    background-color: #121318;
+}
+
+.border--green1 {
+    border: 1px solid #8CDD00;
+}
+
+.border_bottom--green1 {
+    border-bottom: 1px solid #8CDD00;
+}
+
+.btn--green {
+    background-color: #8CDD00;
+    color: black;
+}
+
+.btn--green:hover {
+    background-color: #6db500;
+    color: black;
+    transition: 0.5s;
+}
+
+.btn--deny:hover {
+    background-color: rgb(255, 0, 0);
+    color: white;
+    transition: 0.5s;
+}
+
+.m-20percent {
+    margin: 20% 1%;
+}
