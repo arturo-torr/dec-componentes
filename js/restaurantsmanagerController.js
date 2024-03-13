@@ -34,207 +34,85 @@ class RestaurantsManagerController {
     fetch("localhost/../data/objects.json")
       .then((response) => response.json())
       .then((data) => {
-        const all1 = this[MODEL].createAllergen(
-          data["all1"].name,
-          RestaurantsManager.Allergen
-        );
-        const all2 = this[MODEL].createAllergen(
-          data["all2"].name,
-          RestaurantsManager.Allergen
-        );
-        const all3 = this[MODEL].createAllergen(
-          data["all3"].name,
-          RestaurantsManager.Allergen
-        );
-        const all4 = this[MODEL].createAllergen(
-          data["all4"].name,
-          RestaurantsManager.Allergen
-        );
-        const cat1 = this[MODEL].createCategory(
-          data["cat1"].name,
-          RestaurantsManager.Category
-        );
-        cat1.description = data["cat1"].description;
+        // Recoge los datos de los alérgenos del JSON
+        let arrAllergens = data.Allergens;
+        // Introduce en el modelo los alérgenos que se recogen
+        for (const all of arrAllergens) {
+          let allergen = this[MODEL].createAllergen(
+            all.name,
+            RestaurantsManager.Allergen
+          );
+          this[MODEL].addAllergen(allergen);
+        }
+        // Recoge los datos de categorías del JSON
+        let arrCategories = data.Categories;
+        // Introduce en el modelo las categorías que se recogen
+        for (const cat of arrCategories) {
+          let category = this[MODEL].createCategory(
+            cat.name,
+            RestaurantsManager.Category
+          );
+          category.description = cat.description;
+          this[MODEL].addCategory(category);
+        }
+        // Recoge los datos de menus del JSON
+        let arrMenus = data.Menus;
+        // Introduce en el modelo los menús que se recogen
+        for (const men of arrMenus) {
+          let menu = this[MODEL].createMenu(men.name, RestaurantsManager.Menu);
+          this[MODEL].addMenu(menu);
+        }
 
-        const cat2 = this[MODEL].createCategory(
-          data["cat2"].name,
-          RestaurantsManager.Category
-        );
-        cat2.description = data["cat2"].description;
-        const cat3 = this[MODEL].createCategory(
-          data["cat3"].name,
-          RestaurantsManager.Category
-        );
-        cat3.description = data["cat3"].description;
+        // Recoge los datos de restaurantes del JSON
+        let arrRestaurants = data.Restaurants;
+        // Introduce en el modelo los restaurantes que se recogen
+        for (const res of arrRestaurants) {
+          let restaurant = this[MODEL].createRestaurant(
+            res.name,
+            RestaurantsManager.Restaurant
+          );
+          restaurant.description = res.description;
+          restaurant.location = new Coordinate(
+            res.location.Coordinate.latitude,
+            res.location.Coordinate.longitude
+          );
+          this[MODEL].addRestaurant(restaurant);
+        }
 
-        const dish1 = this[MODEL].createDish(
-          data["dish1"].name,
-          RestaurantsManager.Dish
-        );
-        dish1.ingredients = data["dish1"].ingredients;
-        dish1.description = data["dish1"].description;
-        dish1.image = data["dish1"].image;
+        // Recoge los datos de platos del JSON
+        let arrDishes = data.Dishes;
+        // Introduce en el modelo los platos que se recogen
+        for (const d of arrDishes) {
+          let dish = this[MODEL].createDish(d.name, RestaurantsManager.Dish);
+          dish.ingredients = d.ingredients;
+          dish.description = d.description;
+          dish.image = d.image;
+          this[MODEL].addDish(dish);
 
-        const dish2 = this[MODEL].createDish(
-          data["dish2"].name,
-          RestaurantsManager.Dish
-        );
-        dish2.ingredients = data["dish2"].ingredients;
-        dish2.description = data["dish2"].description;
-        dish2.image = data["dish2"].image;
+          // Si el plato tiene alérgenos, los recorre y los va integrando en el modelo
+          if (d.allergen) {
+            for (const allergen of d.allergen) {
+              let all = this[MODEL].createAllergen(
+                allergen,
+                RestaurantsManager.Allergen
+              );
+              this[MODEL].assignAllergenToDish(all, dish);
+            }
+          }
 
-        const dish3 = this[MODEL].createDish(
-          data["dish3"].name,
-          RestaurantsManager.Dish
-        );
-        dish3.ingredients = data["dish3"].ingredients;
-        dish3.description = data["dish3"].description;
-        dish3.image = data["dish3"].image;
+          // Recoge una categoría, y si el plato la tiene, se la asigna
+          let cat = this[MODEL].createCategory(
+            d.category,
+            RestaurantsManager.Category
+          );
+          if (cat) this[MODEL].assignCategoryToDish(cat, dish);
 
-        const dish4 = this[MODEL].createDish(
-          data["dish4"].name,
-          RestaurantsManager.Dish
-        );
-        dish4.ingredients = data["dish4"].ingredients;
-        dish4.description = data["dish4"].description;
-        dish4.image = data["dish4"].image;
-
-        const dish5 = this[MODEL].createDish(
-          data["dish5"].name,
-          RestaurantsManager.Dish
-        );
-        dish5.ingredients = data["dish5"].ingredients;
-        dish5.description = data["dish5"].description;
-        dish5.image = data["dish5"].image;
-
-        const dish6 = this[MODEL].createDish(
-          data["dish6"].name,
-          RestaurantsManager.Dish
-        );
-        dish6.ingredients = data["dish6"].ingredients;
-        dish6.description = data["dish6"].description;
-        dish6.image = data["dish6"].image;
-
-        const dish7 = this[MODEL].createDish(
-          data["dish7"].name,
-          RestaurantsManager.Dish
-        );
-        dish7.ingredients = data["dish7"].ingredients;
-        dish7.description = data["dish7"].description;
-        dish7.image = data["dish7"].image;
-
-        const dish8 = this[MODEL].createDish(
-          data["dish8"].name,
-          RestaurantsManager.Dish
-        );
-        dish8.ingredients = data["dish8"].ingredients;
-        dish8.description = data["dish8"].description;
-        dish8.image = data["dish8"].image;
-
-        const dish9 = this[MODEL].createDish(
-          data["dish9"].name,
-          RestaurantsManager.Dish
-        );
-        dish9.ingredients = data["dish9"].ingredients;
-        dish9.description = data["dish9"].description;
-        dish9.image = data["dish9"].image;
-
-        const dish10 = this[MODEL].createDish(
-          data["dish10"].name,
-          RestaurantsManager.Dish
-        );
-        dish10.ingredients = data["dish10"].ingredients;
-        dish10.description = data["dish10"].description;
-        dish10.image = data["dish10"].image;
-
-        const dish11 = this[MODEL].createDish(
-          data["dish11"].name,
-          RestaurantsManager.Dish
-        );
-        dish11.ingredients = data["dish11"].ingredients;
-        dish11.description = data["dish11"].description;
-        dish11.image = data["dish11"].image;
-
-        const dish12 = this[MODEL].createDish(
-          data["dish12"].name,
-          RestaurantsManager.Dish
-        );
-        dish12.ingredients = data["dish12"].ingredients;
-        dish12.description = data["dish12"].description;
-        dish12.image = data["dish12"].image;
-
-        this[MODEL].addAllergen(all1, all2, all3, all4);
-        this[MODEL].assignAllergenToDish(
-          all1,
-          dish11,
-          dish12,
-          dish10,
-          dish9,
-          dish4,
-          dish3,
-          dish2
-        );
-        this[MODEL].assignAllergenToDish(
-          all2,
-          dish3,
-          dish4,
-          dish5,
-          dish7,
-          dish10
-        );
-        this[MODEL].assignAllergenToDish(all3, dish5, dish6, dish7);
-        this[MODEL].assignAllergenToDish(all4, dish2, dish3, dish4);
-        // Creación de menús
-        let menu1 = this[MODEL].createMenu(
-          data["menu1"].name,
-          RestaurantsManager.Menu
-        );
-        let menu2 = this[MODEL].createMenu(
-          data["menu2"].name,
-          RestaurantsManager.Menu
-        );
-        let menu3 = this[MODEL].createMenu(
-          data["menu3"].name,
-          RestaurantsManager.Menu
-        );
-
-        // Asignación de platos a categorías y menús
-        this[MODEL].assignCategoryToDish(cat1, dish2, dish3, dish4, dish5);
-        this[MODEL].assignCategoryToDish(cat2, dish1, dish6, dish7, dish8);
-        this[MODEL].assignCategoryToDish(cat3, dish9, dish10, dish11, dish12);
-        this[MODEL].assignDishToMenu(menu1, dish2, dish1, dish9);
-        this[MODEL].assignDishToMenu(menu2, dish3, dish6, dish10);
-        this[MODEL].assignDishToMenu(menu3, dish4, dish7, dish11);
-        // Creación de restaurantes
-        let res1 = this[MODEL].createRestaurant(
-          data["res1"].name,
-          RestaurantsManager.Restaurant
-        );
-        res1.description = data["res1"].description;
-        res1.location = new Coordinate(
-          data["res1"].location.Coordinate.latitude,
-          data["res1"].location.Coordinate.longitude
-        );
-
-        let res2 = this[MODEL].createRestaurant(
-          data["res2"].name,
-          RestaurantsManager.Restaurant
-        );
-        res2.description = data["res2"].description;
-        res2.location = new Coordinate(
-          data["res2"].location.Coordinate.latitude,
-          data["res2"].location.Coordinate.longitude
-        );
-        let res3 = this[MODEL].createRestaurant(
-          data["res3"].name,
-          RestaurantsManager.Restaurant
-        );
-        res3.description = data["res3"].description;
-        res3.location = new Coordinate(
-          data["res3"].location.Coordinate.latitude,
-          data["res3"].location.Coordinate.longitude
-        );
-        this[MODEL].addRestaurant(res1, res2, res3);
+          // Recoge un menú, y si el plato lo tiene, se lo asigna
+          if (d.menu) {
+            let men = this[MODEL].createMenu(d.menu, RestaurantsManager.Menu);
+            this[MODEL].assignDishToMenu(men, dish);
+          }
+        }
       })
       .then(() => {
         this.onInit();
