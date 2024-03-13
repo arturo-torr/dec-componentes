@@ -28,6 +28,7 @@ const historyActions = {
   login: () => RestaurantManagerApp.handleLoginForm(),
   queryFavourites: () => RestaurantManagerApp.handleQueryFavourites(),
   backup: () => RestaurantManagerApp.handleBackup(),
+  showLocations: () => RestaurantManagerApp.handleLocationInMenu(),
 };
 
 // Se define 'popstate' para restaurar el estado de la página en función del tipo de acción apilada

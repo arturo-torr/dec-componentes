@@ -232,12 +232,30 @@ class RestaurantsManagerView {
 
   // Muestra la página con el mapa, sus restaurantes y sus popups
   showLocations(restaurants) {
+    // Creación de las migas de pan, seleccionando el <ol> que las contiene y posteriormente sus <li>
+    let ol = this.breadcrumb.closest("ol");
+    let elements = ol.querySelectorAll("li");
+    // Lo recorremos y eliminamos aquello que no sea el Inicio para limpiar en cada llamada las migas de pan
+    for (const element of elements) {
+      if (element !== ol.firstElementChild) element.remove();
+    }
+    // Elimina el atributo de aria-current
+    ol.firstElementChild.removeAttribute("aria-current");
+
+    // Creamos un li, le damos estilos y lo agregamos
+    let li = document.createElement("li");
+    li.classList.add("breadcrumb-item", "text--green", "fw-bolder");
+    li.ariaCurrent = "page";
+    li.textContent = "Mostrar ubicaciones";
+    ol.append(li);
+
     this.centralzone.replaceChildren();
     this.initzone.replaceChildren();
+
     // Crea el contenedor y le añade las clases
     const container = document.createElement("div");
-    container.classList.add("container", "my-5");
-    container.id = "restaurant";
+    container.classList.add("container", "my-2");
+    container.id = "locations";
     container.insertAdjacentHTML(
       "beforeend",
       `    <div class="mb-5">
@@ -282,7 +300,14 @@ class RestaurantsManagerView {
   bindLocation(handler) {
     let locationsLink = document.getElementById("locations");
     locationsLink.addEventListener("click", () => {
-      handler();
+      this[EXECUTE_HANDLER](
+        handler,
+        [],
+        "#locations",
+        { action: "showLocations" },
+        "#locations",
+        event
+      );
     });
   }
 
@@ -360,6 +385,7 @@ class RestaurantsManagerView {
       this.centralzone.append(container);
       const mapContainer = document.getElementById("mapid");
       mapContainer.style.height = "300px";
+      mapContainer.style.zIndex = 1;
       mapContainer.classList.add(
         "w-50",
         "mx-auto",
@@ -1038,6 +1064,8 @@ class RestaurantsManagerView {
               <label for="address" class="form-label">Introduzca una dirección del restaurante:</label>
               <input type="text" name="q" class="form-control" id="address"
                   placeholder="Introduce la dirección a buscar">
+                  <div class="invalid-feedback">Debes introducir una dirección y marcar un sitio.</div>
+                  <div class="valid-feedback">Correcto!</div>
           </div>
           <div class="col-md-2">
           <label for="btn" class="form-label"><br></label>
