@@ -1,173 +1,216 @@
 {
-  "dish1": {
-    "name": "Croquetas",
-    "ingredients": ["Jamón", "Pollo", "Sal", "Sazonador"],
-    "description": "Croquetas de cocido caseras",
-    "image": "img/a4.jpg"
-  },
-  "dish2": {
-    "name": "Doble Carne Pepinillo",
-    "ingredients": [
-      "Queso",
-      "Ternera",
-      "Lechuga",
-      "Pepinillo",
-      "Ketchup",
-      "Mayonesa",
-      "Mostaza"
-    ],
-    "description": "Hamburguesa doble carne con pepinillo pinchado en el pan de la hamburguesa",
-    "image": "img/b1.jpeg"
-  },
-  "dish3": {
-    "name": "Carne y Bacon",
-    "ingredients": ["Ternera", "Bacon", "Cheddar", "Ghouda", "Pan bizcocho"],
-    "description": "Burger tradicional americana con ternera de vacuno y doble de bacon",
-    "image": "img/b2.jpg"
-  },
-  "dish4": {
-    "name": "Carne y Huevo",
-    "ingredients": [
-      "Ternera",
-      "Lechuga",
-      "Tomate",
-      "Huevo Frito",
-      "Cheddar",
-      "Ghouda"
-    ],
-    "description": "Burger con huevo frito, especialidad de la casa",
-    "image": "img/b3.jpg"
-  },
-  "dish5": {
-    "name": "Desmenuzada con cebolla",
-    "ingredients": [
-      "Cerdo",
-      "Cebolla",
-      "Mayonesa",
-      "Lechuga",
-      "Cebolla caramelizada",
-      "Mostaza"
-    ],
-    "description": "Burger con cerdo desmenuzado, nuestra hamburguesa más artesana",
-    "image": "img/b4.jpg"
-  },
-  "dish6": {
-    "name": "Tiras de pollo",
-    "ingredients": ["Pollo frito", "Pimienta negra", "Sal"],
-    "description": "Tiras de pollo tradicionales al estilo Kentucky",
-    "image": "img/a1.jpg"
-  },
-  "dish7": {
-    "name": "Fingers de pollo",
-    "ingredients": ["Tiras de pollo", "Aceite", "Sazonador"],
-    "description": "Fingers de pollo americanos recién sacados de la freidora",
-    "image": "img/a2.jpg"
-  },
-  "dish8": {
-    "name": "Bravas españolas",
-    "ingredients": ["Patata", "Tabasco", "Tomate", "Sal"],
-    "description": "El acompañamiento más tradicional español",
-    "image": "img/a3.jpg"
-  },
-  "dish9": {
-    "name": "Helado casero",
-    "ingredients": ["Vainilla", "Azúcar", "Sirope de chocolate"],
-    "description": "Artesano y delicioso",
-    "image": "img/helado.jpg"
-  },
-  "dish10": {
-    "name": "Contesa",
-    "ingredients": ["Nata", "Chocolate", "Azúcar"],
-    "description": "Postre tradicional español",
-    "image": "img/contesa.jpg"
-  },
-  "dish11": {
-    "name": "Natillas de la abuela",
-    "ingredients": [
-      "Leche",
-      "Canela",
-      "Vaina de vainilla",
-      "Yema de huevo",
-      "Azúcar",
-      "Galleta"
-    ],
-    "description": "Tradicional, casero y auténtico",
-    "image": "img/natillas.jpg"
-  },
-  "dish12": {
-    "name": "Arroz con leche",
-    "ingredients": [
-      "Leche",
-      "Azúcar",
-      "Corteza de naranja",
-      "Vainilla",
-      "Arroz",
-      "Canela"
-    ],
-    "description": "Postre al estilo Karlos Arguiñano",
-    "image": "img/arrozleche.jpg"
-  },
-  "cat1": {
-    "name": "Burger principales",
-    "description": "Hamburguesas especiales"
-  },
-  "cat2": {
-    "name": "Acompañamientos",
-    "description": "Acompañamientos increíbles"
-  },
-  "cat3": {
-    "name": "Postres",
-    "description": "Postres impresionantes"
-  },
-  "all1": {
-    "name": "Lactosa"
-  },
-  "all2": {
-    "name": "Gluten"
-  },
-  "all3": {
-    "name": "Soja"
-  },
-  "all4": {
-    "name": "Frutos Secos"
-  },
-  "menu1": {
-    "name": "Classic Arthur Menu"
-  },
-  "menu2": {
-    "name": "Funny Flavours"
-  },
-  "menu3": {
-    "name": "New and Old"
-  },
-  "res1": {
-    "name": "KAB Madrid",
-    "description": "KAB situado en Madrid, donde todo aquel que va con prisa, se para aquí.",
-    "location": {
-      "Coordinate": {
-        "latitude": "40.437842",
-        "longitude": "-3.686273"
+  "Dishes": [
+    {
+      "name": "Doble Carne Pepinillo",
+      "ingredients": [
+        "Queso",
+        "Ternera",
+        "Lechuga",
+        "Pepinillo",
+        "Ketchup",
+        "Mayonesa",
+        "Mostaza"
+      ],
+      "description": "Hamburguesa doble carne con pepinillo pinchado en el pan de la hamburguesa",
+      "image": "img/b1.jpeg",
+      "category": "Burger principales",
+      "allergen": ["Lactosa", "Gluten"],
+      "menu": "Classic Arthur Menu"
+    },
+    {
+      "name": "Carne y Bacon",
+      "ingredients": ["Ternera", "Bacon", "Cheddar", "Ghouda", "Pan bizcocho"],
+      "description": "Burger tradicional americana con ternera de vacuno y doble de bacon",
+      "image": "img/b2.jpg",
+      "category": "Burger principales",
+      "allergen": ["Lactosa", "Gluten"],
+      "menu": "Funny Flavours"
+    },
+    {
+      "name": "Carne y Huevo",
+      "ingredients": [
+        "Ternera",
+        "Lechuga",
+        "Tomate",
+        "Huevo Frito",
+        "Cheddar",
+        "Ghouda"
+      ],
+      "description": "Burger con huevo frito, especialidad de la casa",
+      "image": "img/b3.jpg",
+      "category": "Burger principales",
+      "allergen": ["Lactosa", "Gluten", "Frutos Secos"],
+      "menu": "New and Old"
+    },
+    {
+      "name": "Desmenuzada con cebolla",
+      "ingredients": [
+        "Cerdo",
+        "Cebolla",
+        "Mayonesa",
+        "Lechuga",
+        "Cebolla caramelizada",
+        "Mostaza"
+      ],
+      "description": "Burger con cerdo desmenuzado, nuestra hamburguesa más artesana",
+      "image": "img/b4.jpg",
+      "category": "Burger principales",
+      "allergen": ["Gluten", "Soja"]
+    },
+    {
+      "name": "Croquetas",
+      "ingredients": ["Jamón", "Pollo", "Sal", "Sazonador"],
+      "description": "Croquetas de cocido caseras",
+      "image": "img/a4.jpg",
+      "category": "Acompañamientos",
+      "allergen": ["Lactosa"],
+      "menu": "Classic Arthur Menu"
+    },
+    {
+      "name": "Tiras de pollo",
+      "ingredients": ["Pollo frito", "Pimienta negra", "Sal"],
+      "description": "Tiras de pollo tradicionales al estilo Kentucky",
+      "image": "img/a1.jpg",
+      "category": "Acompañamientos",
+      "allergen": ["Gluten", "Soja"],
+      "menu": "Funny Flavours"
+    },
+    {
+      "name": "Fingers de pollo",
+      "ingredients": ["Tiras de pollo", "Aceite", "Sazonador"],
+      "description": "Fingers de pollo americanos recién sacados de la freidora",
+      "image": "img/a2.jpg",
+      "category": "Acompañamientos",
+      "allergen": ["Gluten", "Soja"]
+    },
+    {
+      "name": "Bravas españolas",
+      "ingredients": ["Patata", "Tabasco", "Tomate", "Sal"],
+      "description": "El acompañamiento más tradicional español",
+      "image": "img/a3.jpg",
+      "category": "Acompañamientos",
+      "allergen": ["Gluten"],
+      "menu": "New and Old"
+    },
+    {
+      "name": "Helado casero",
+      "ingredients": ["Vainilla", "Azúcar", "Sirope de chocolate"],
+      "description": "Artesano y delicioso",
+      "image": "img/helado.jpg",
+      "category": "Postres",
+      "allergen": ["Lactosa", "Frutos Secos"],
+      "menu": "Classic Arthur Menu"
+    },
+    {
+      "name": "Contesa",
+      "ingredients": ["Nata", "Chocolate", "Azúcar"],
+      "description": "Postre tradicional español",
+      "image": "img/contesa.jpg",
+      "category": "Postres",
+      "allergen": ["Lactosa", "Gluten"],
+      "menu": "Funny Flavours"
+    },
+    {
+      "name": "Natillas de la abuela",
+      "ingredients": [
+        "Leche",
+        "Canela",
+        "Vaina de vainilla",
+        "Yema de huevo",
+        "Azúcar",
+        "Galleta"
+      ],
+      "description": "Tradicional, casero y auténtico",
+      "image": "img/natillas.jpg",
+      "category": "Postres",
+      "allergen": ["Lactosa", "Soja", "Gluten"]
+    },
+    {
+      "name": "Arroz con leche",
+      "ingredients": [
+        "Leche",
+        "Azúcar",
+        "Corteza de naranja",
+        "Vainilla",
+        "Arroz",
+        "Canela"
+      ],
+      "description": "Postre al estilo Karlos Arguiñano",
+      "image": "img/arrozleche.jpg",
+      "category": "Postres",
+      "allergen": ["Gluten", "Lactosa"],
+      "menu": "New and Old"
+    }
+  ],
+  "Categories": [
+    {
+      "name": "Burger principales",
+      "description": "Hamburguesas especiales"
+    },
+    {
+      "name": "Acompañamientos",
+      "description": "Acompañamientos increíbles"
+    },
+    {
+      "name": "Postres",
+      "description": "Postres impresionantes"
+    }
+  ],
+  "Allergens": [
+    {
+      "name": "Lactosa"
+    },
+    {
+      "name": "Gluten"
+    },
+    {
+      "name": "Soja"
+    },
+    {
+      "name": "Frutos Secos"
+    }
+  ],
+  "Menus": [
+    {
+      "name": "Classic Arthur Menu"
+    },
+    {
+      "name": "Funny Flavours"
+    },
+    {
+      "name": "New and Old"
+    }
+  ],
+  "Restaurants": [
+    {
+      "name": "KAB Madrid",
+      "description": "KAB situado en Madrid, donde todo aquel que va con prisa, se para aquí.",
+      "location": {
+        "Coordinate": {
+          "latitude": "40.437842",
+          "longitude": "-3.686273"
+        }
+      }
+    },
+    {
+      "name": "KAB Ciudad Real",
+      "description": "KAB situado en Ciudad Real. Un soplo de aire fresco en una ciudad agricultora.",
+      "location": {
+        "Coordinate": {
+          "latitude": "38.98626",
+          "longitude": "-3.92907"
+        }
+      }
+    },
+    {
+      "name": "KAB Parla",
+      "description": "KAB situado en Parla. Nunca hay que olvidar los orígenes ni de donde venimos.",
+      "location": {
+        "Coordinate": {
+          "latitude": "40.23604",
+          "longitude": "-3.76752"
+        }
       }
     }
-  },
-  "res2": {
-    "name": "KAB Ciudad Real",
-    "description": "KAB situado en Ciudad Real. Un soplo de aire fresco en una ciudad agricultora.",
-    "location": {
-      "Coordinate": {
-        "latitude": "38.98626",
-        "longitude": "-3.92907"
-      }
-    }
-  },
-  "res3": {
-    "name": "KAB Parla",
-    "description": "KAB situado en Parla. Nunca hay que olvidar los orígenes ni de donde venimos.",
-    "location": {
-      "Coordinate": {
-        "latitude": "40.23604",
-        "longitude": "-3.76752"
-      }
-    }
-  }
+  ]
 }

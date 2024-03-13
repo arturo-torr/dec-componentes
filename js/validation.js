@@ -236,11 +236,6 @@ function newRestaurantValidation(handler) {
     this.ncDescription.value = this.ncDescription.value.trim();
     showFeedBack(this.ncDescription, true);
 
-    if (!longitude && !latitude) {
-      isValid = false;
-      showFeedBack(this.ncName, false);
-    }
-
     if (!this.ncName.checkValidity()) {
       isValid = false;
       showFeedBack(this.ncName, false);
@@ -249,6 +244,13 @@ function newRestaurantValidation(handler) {
       showFeedBack(this.ncName, true);
     }
 
+    if (!longitude && !latitude) {
+      isValid = false;
+      showFeedBack(this.address, false);
+      firstInvalidElement = this.address;
+    } else {
+      showFeedBack(this.address, true);
+    }
     if (!isValid) {
       firstInvalidElement.focus();
     } else {
